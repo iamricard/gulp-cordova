@@ -1,6 +1,6 @@
 {
   "name": "gulp-cordovacli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Wraps a web application as a hybrid app with Apache Cordova CLI 4.x.x",
   "main": "index.js",
   "scripts": {
