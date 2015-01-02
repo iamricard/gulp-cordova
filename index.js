@@ -39,10 +39,12 @@ module.exports = function(commands, options) {
   }
 
   function runCommand(command, next, cb) {
-    gutil.log('[gulp-cordovacli]', 'Running command:', chalk.cyan(command.join(' ')))
-
     var opts = options ? options : {}
     var cordova = spawn('cordova', command)
+
+    if (!opts.silent) {
+      gutil.log('[gulp-cordovacli]', 'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')))
+    }
 
     cordova.stdout.setEncoding('utf-8')
     cordova.stderr.setEncoding('utf-8')

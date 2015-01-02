@@ -1,0 +1,11 @@
+{
+  "cordova": [
+    [
+      "platform",
+      "add",
+      "ios",
+      "android",
+      "browser"
+    ]
+  ]
+}

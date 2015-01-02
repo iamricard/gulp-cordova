@@ -29,5 +29,11 @@
     "gulp-util": "^3.0.1",
     "map-stream": "0.0.5",
     "win-spawn": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "mocha": "^2.1.0",
+    "rimraf": "^2.2.8",
+    "vinyl": "^0.4.6"
   }
 }
