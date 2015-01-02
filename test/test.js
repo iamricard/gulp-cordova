@@ -7,7 +7,7 @@ var rm = require('rimraf')
 var cordova = require('../')
 
 describe('gulp-cordovacli', function() {
-  this.timeout(8000)
+  this.timeout(10000)
 
   describe('using a configuration file', function() {
     var CONFIG_FILE = '../fixtures.json'
