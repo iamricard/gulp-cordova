@@ -1,0 +1,9 @@
+{
+  "cordova": [
+    [
+      "platform",
+      "add",
+      "browser"
+    ]
+  ]
+}

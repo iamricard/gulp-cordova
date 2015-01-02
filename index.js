@@ -18,7 +18,7 @@ module.exports = function(commands, options) {
 
   function cordova(file, cb) {
     if (!file && !commands) {
-      throw new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object')
+      return cb(new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object'))
     }
 
     if (file && !commands) {
@@ -26,7 +26,7 @@ module.exports = function(commands, options) {
     }
 
     if (!Array.isArray(commands)) {
-      throw new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array')
+      return cb(new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array'))
     }
 
     if (!Array.isArray(commands[0])) {
@@ -39,10 +39,12 @@ module.exports = function(commands, options) {
   }
 
   function runCommand(command, next, cb) {
-    gutil.log('[gulp-cordovacli]', 'Running command:', chalk.cyan(command.join(' ')))
-
     var opts = options ? options : {}
     var cordova = spawn('cordova', command)
+
+    if (!opts.silent) {
+      gutil.log('[gulp-cordovacli]', 'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')))
+    }
 
     cordova.stdout.setEncoding('utf-8')
     cordova.stderr.setEncoding('utf-8')

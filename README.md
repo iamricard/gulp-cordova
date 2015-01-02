@@ -3,6 +3,7 @@ gulp-cordovacli
 
 [![Dependency Status](https://david-dm.org/rcsole/gulp-cordovacli.svg)](https://david-dm.org/rcsole/gulp-cordovacli)
 [![Gittip](http://img.shields.io/gittip/rcsole.svg?style=flat)](https://www.gittip.com/rcsole/)
+[![Build Status](https://travis-ci.org/rcsole/gulp-cordovacli.svg)](https://travis-ci.org/rcsole/gulp-cordovacli)
 
 [![NPM](https://nodei.co/npm/gulp-cordovacli.png?downloads=true&stars=true&downloadRank=true)](https://nodei.co/npm/gulp-cordovacli/)
 
@@ -10,8 +11,10 @@ This aims to provide a very basic interface to be used in a gulp build system,
 bare in mind this doesn't provide much really, it's just to abstract the spawn
 process and the such.
 
-I have no idea how to test this so that's why it has no tests, I would love it
-if anyone out there would help me out figuring out how to test this.
+~~I have no idea how to test this so that's why it has no tests, I would love it
+if anyone out there would help me out figuring out how to test this.~~ I've
+written a couple of tests but I am pretty sure they are not enough, and they
+might not even be good. Help is still welcome!
 
 As with many node projects, send a PR if it is accepted you're added to the
 repo with full-access rights. If there are any bugs open an issue and we can
