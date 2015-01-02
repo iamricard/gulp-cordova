@@ -10,10 +10,35 @@ var spawn = require('win-spawn')
 var gutil = require('gulp-util')
 var chalk = require('chalk')
 var map = require('map-stream')
+var eachAsync = require('each-async')
 
-module.exports = function(command, options) {
+module.exports = function(commands, options) {
 
-  function runCommand(file, cb) {
+  var opts = options || {}
+
+  function cordova(file, cb) {
+    if (!file && !commands) {
+      throw new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object')
+    }
+
+    if (file && !commands) {
+      commands = JSON.parse(file.contents.toString()).cordova
+    }
+
+    if (!Array.isArray(commands)) {
+      throw new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array')
+    }
+
+    if (!Array.isArray(commands[0])) {
+      commands = [commands]
+    }
+
+    eachAsync(commands, function(command, i, next) {
+      runCommand(command, next, cb)
+    }, cb)
+  }
+
+  function runCommand(command, next, cb) {
     gutil.log('[gulp-cordovacli]', 'Running command:', chalk.cyan(command.join(' ')))
 
     var opts = options ? options : {}
@@ -26,8 +51,6 @@ module.exports = function(command, options) {
       if (opts.verbose) {
         gutil.log('[gulp-cordovacli]', chalk.blue(data))
       }
-
-      return cb()
     })
 
     cordova.stderr.on('data', function(data) {
@@ -37,7 +60,11 @@ module.exports = function(command, options) {
 
       return cb()
     })
+
+    cordova.on('close', function() {
+      next()
+    })
   }
 
-  return map(runCommand)
+  return map(cordova)
 }
