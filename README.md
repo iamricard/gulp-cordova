@@ -27,9 +27,49 @@ when something specifically is updated.
 API
 ---
 
+There's two ways to use this plugin, via a JSON configuration file or just
+passing parameters to the `cordova` function. **Note:** If you pass commands as a param
+the file contents will be ignored.
+
+### cordova()
+Usage example:
+
+```javascript
+gulp.task('cordova:init', function() {
+  gulp.src('./package.json')
+    .pipe(cordova())
+})
+```
+
+Notice I'm using `package.json` for demonstration purposes, but you may use any
+`JSON` file. Just make sure the file has a key `cordova` and that key contains
+an array with the command or an array of arrays for multiple commands.
+
+```json
+file: config.json/package.json/xxx.json
+{
+  "cordova": [
+    [
+      "platform",
+      "add",
+      "ios",
+      "android",
+      "browser"
+    ],
+    [
+      "plugin",
+      "add",
+      "org.apache.cordova.device",
+      "org.apache.cordova.geolocation",
+      "org.apache.cordova.console"
+    ]
+  ]
+}
+```
+
 ### cordova(command, options)
 
-#### command (required)
+#### command (optional)
 Type: `array`
 
 Values: In theory, any cordova cli command. I haven't tested all of them.
