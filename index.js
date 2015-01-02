@@ -18,7 +18,7 @@ module.exports = function(commands, options) {
 
   function cordova(file, cb) {
     if (!file && !commands) {
-      throw new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object')
+      return cb(new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object'))
     }
 
     if (file && !commands) {
@@ -26,7 +26,7 @@ module.exports = function(commands, options) {
     }
 
     if (!Array.isArray(commands)) {
-      throw new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array')
+      return cb(new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array'))
     }
 
     if (!Array.isArray(commands[0])) {
