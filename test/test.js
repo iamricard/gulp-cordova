@@ -7,6 +7,8 @@ var rm = require('rimraf')
 var cordova = require('../')
 
 describe('gulp-cordovacli', function() {
+  this.timeout(8000)
+
   describe('using a configuration file', function() {
     var CONFIG_FILE = '../fixtures.json'
 
@@ -30,8 +32,6 @@ describe('gulp-cordovacli', function() {
       gulp.src(CONFIG_FILE)
         .pipe(cordova(false, { silent: true }))
         .on('close', function() {
-          assert.equal(true, fs.existsSync(__dirname + '/test/platforms/ios'))
-          assert.equal(true, fs.existsSync(__dirname + '/test/platforms/android'))
           assert.equal(true, fs.existsSync(__dirname + '/test/platforms/browser'))
 
           done()
@@ -40,10 +40,8 @@ describe('gulp-cordovacli', function() {
 
     it('should not use the config file if commands are passed', function(done) {
       gulp.src(CONFIG_FILE)
-        .pipe(cordova(['platform', 'add', 'ios'], { silent: true }))
+        .pipe(cordova(['plugins', 'add', 'org.apache.cordova.device'], { silent: true }))
         .on('close', function() {
-          assert.equal(true, fs.existsSync(__dirname + '/test/platforms/ios'))
-          assert.equal(false, fs.existsSync(__dirname + '/test/platforms/android'))
           assert.equal(false, fs.existsSync(__dirname + '/test/platforms/browser'))
 
           done()

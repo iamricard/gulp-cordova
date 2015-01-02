@@ -3,8 +3,6 @@
     [
       "platform",
       "add",
-      "ios",
-      "android",
       "browser"
     ]
   ]

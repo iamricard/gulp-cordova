@@ -3,6 +3,7 @@ gulp-cordovacli
 
 [![Dependency Status](https://david-dm.org/rcsole/gulp-cordovacli.svg)](https://david-dm.org/rcsole/gulp-cordovacli)
 [![Gittip](http://img.shields.io/gittip/rcsole.svg?style=flat)](https://www.gittip.com/rcsole/)
+[![Build Status](https://travis-ci.org/rcsole/gulp-cordovacli.svg)](https://travis-ci.org/rcsole/gulp-cordovacli)
 
 [![NPM](https://nodei.co/npm/gulp-cordovacli.png?downloads=true&stars=true&downloadRank=true)](https://nodei.co/npm/gulp-cordovacli/)
 
