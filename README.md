@@ -1,5 +1,5 @@
-gulp-cordovacli
-===============
+gulp-cordova
+============
 
 [![Dependency Status](https://david-dm.org/rcsole/gulp-cordovacli.svg)](https://david-dm.org/rcsole/gulp-cordovacli)
 [![Gittip](http://img.shields.io/gittip/rcsole.svg?style=flat)](https://www.gittip.com/rcsole/)

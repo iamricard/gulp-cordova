@@ -1,6 +1,6 @@
 {
   "name": "gulp-cordova",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Wraps a web application as a hybrid app with Apache Cordova lib 4.x.x",
   "main": "index.js",
   "scripts": {
