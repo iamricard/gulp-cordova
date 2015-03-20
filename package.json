@@ -4,7 +4,7 @@
   "description": "Wraps a web application as a hybrid app with Apache Cordova CLI 4.x.x",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout=20000"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
