@@ -10,7 +10,7 @@ var rm = require('rimraf')
 
 var cordova = require('../')
 
-describe('gulp-cordovacli', function() {
+describe('gulp-cordova', function() {
   var CONFIG_FILE = './test/fixtures.json'
 
   it('should emit an error if no commands and no file are provided', function(done) {

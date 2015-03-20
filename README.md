@@ -1,11 +1,11 @@
 gulp-cordova
 ============
 
-[![Dependency Status](https://david-dm.org/rcsole/gulp-cordovacli.svg)](https://david-dm.org/rcsole/gulp-cordovacli)
+[![Dependency Status](https://david-dm.org/rcsole/gulp-cordova.svg)](https://david-dm.org/rcsole/gulp-cordova)
 [![Gittip](http://img.shields.io/gittip/rcsole.svg?style=flat)](https://www.gittip.com/rcsole/)
-[![CircleCI](https://circleci.com/gh/rcsole/gulp-cordovacli/tree/master.svg?style=svg)](https://circleci.com/gh/rcsole/gulp-cordovacli/tree/master)
+[![CircleCI](https://circleci.com/gh/rcsole/gulp-cordova/tree/master.svg?style=svg)](https://circleci.com/gh/rcsole/gulp-cordova/tree/master)
 
-[![NPM](https://nodei.co/npm/gulp-cordovacli.png?downloads=true&stars=true&downloadRank=true)](https://nodei.co/npm/gulp-cordovacli/)
+[![NPM](https://nodei.co/npm/gulp-cordova.png?downloads=true&stars=true&downloadRank=true)](https://nodei.co/npm/gulp-cordova/)
 
 This aims to provide a very basic interface to be used in a gulp build system,
 bare in mind this doesn't provide much really, it's just to abstract the spawn

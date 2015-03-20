@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rcsole/gulp-cordovacli"
+    "url": "https://github.com/rcsole/gulp-cordova"
   },
   "keywords": [
     "gulpplugin",
@@ -21,9 +21,9 @@
   "author": "Ricard Sole Casas <ricardsolecasas@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rcsole/gulp-cordovacli/issues"
+    "url": "https://github.com/rcsole/gulp-cordova/issues"
   },
-  "homepage": "https://github.com/rcsole/gulp-cordovacli",
+  "homepage": "https://github.com/rcsole/gulp-cordova",
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^1.0.0",
