@@ -94,3 +94,10 @@ Eg:
 Type: `boolean`
 
 Default: `false`
+
+##### cwd EXPERIMENTAL
+Type: `string`
+
+Default: `undefined`
+
+You can use this to run the specified `cordova` command in a specific directory.
