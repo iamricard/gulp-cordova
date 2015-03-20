@@ -75,12 +75,6 @@ module.exports = function(commands, options) {
     }
 
     wrapper(command, next)
-
-    // var arguments = command.splice(1, Number.MAX_VALUE)
-    // arguments.push(next)
-    //
-    // cordova[command[0]].apply(this, arguments)
-
   }
 
   return map(cordovaStream)
