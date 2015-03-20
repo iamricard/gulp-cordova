@@ -1,6 +1,3 @@
 machine:
   node:
     version: iojs-1.5.0
-dependencies:
-  override:
-    - npm install --dev
