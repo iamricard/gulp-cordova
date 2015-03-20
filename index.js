@@ -1,72 +1,81 @@
 /*
- * gulp-cordovacli
- * https://github.com/rcsole/gulp-cordovacli
+ * gulp-cordova
+ * https://github.com/rcsole/gulp-cordova
  *
  * Copyright (c) 2015 Ricard Solé Casas
  * Licensed under the MIT license.
  */
 
-var spawn = require('win-spawn')
+var wrapper = require('./wrapper')
 var gutil = require('gulp-util')
 var chalk = require('chalk')
 var map = require('map-stream')
-var eachAsync = require('each-async')
+var async = require('async')
+
+var GULP_CORDOVA = '[gulp-cordova]'
 
 module.exports = function(commands, options) {
 
+  var endStream = null
   var opts = options || {}
+  opts.rootDir = process.cwd()
 
-  function cordova(file, cb) {
-    if (!file && !commands) {
-      return cb(new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object'))
+  function cordovaError(message) {
+    return new gutil.PluginError({
+      plugin: GULP_CORDOVA,
+      message: message
+    })
+  }
+
+  function cordovaStream(file, callback) {
+    endStream = callback
+
+    if (!file.contents && !commands) {
+      return endStream(new cordovaError('Please provide either a config file or a command object'))
     }
 
-    if (file && !commands) {
+    if (file.contents && !commands) {
       commands = JSON.parse(file.contents.toString()).cordova
     }
 
     if (!Array.isArray(commands)) {
-      return cb(new gutil.PluginError('[gulp-cordovacli]', 'commands must be an array'))
+      return endStream(new cordovaError('Commands must be an array'))
     }
 
     if (!Array.isArray(commands[0])) {
       commands = [commands]
     }
 
-    eachAsync(commands, function(command, i, next) {
-      runCommand(command, next, cb)
-    }, cb)
+    async.eachSeries(commands, function(command, next) {
+      execute(command, next)
+    }, function(err) {
+
+      if (!opts.silent) {
+        gutil.log(GULP_CORDOVA,
+          'Going back to root directory:',
+          opts.rootDir
+        )
+      }
+
+      process.chdir(opts.rootDir)
+      endStream()
+    })
   }
 
-  function runCommand(command, next, cb) {
-    var opts = options ? options : {}
-    var cordova = spawn('cordova', command)
+  function execute(command, next) {
 
-    if (!opts.silent) {
-      gutil.log('[gulp-cordovacli]', 'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')))
+    if (opts.cwd) {
+      process.chdir(opts.cwd)
     }
 
-    cordova.stdout.setEncoding('utf-8')
-    cordova.stderr.setEncoding('utf-8')
+    if (!opts.silent) {
+      gutil.log(GULP_CORDOVA,
+        'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')),
+        'in', process.cwd())
+    }
 
-    cordova.stdout.on('data', function(data) {
-      if (opts.verbose) {
-        gutil.log('[gulp-cordovacli]', chalk.blue(data))
-      }
-    })
-
-    cordova.stderr.on('data', function(data) {
-      if (opts.verbose) {
-        gutil.log('[gulp-cordovacli]', chalk.yellow(data))
-      }
-
-      return cb()
-    })
-
-    cordova.on('close', function() {
-      next()
-    })
+    wrapper(command, next)
   }
 
-  return map(cordova)
+  return map(cordovaStream)
 }
