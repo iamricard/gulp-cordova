@@ -17,6 +17,8 @@ module.exports = function(commands, options) {
   var opts = options || {}
 
   function cordova(file, cb) {
+    gutil.log('[gulp-cordovacli]', 'DEPRECATION WARNING: This has been deprecated in favour of gulp-cordova')
+
     if (!file && !commands) {
       return cb(new gutil.PluginError('[gulp-cordovacli]', 'Please provide either a config file or a command object'))
     }
