@@ -101,3 +101,5 @@ Type: `string`
 Default: `undefined`
 
 You can use this to run the specified `cordova` command in a specific directory.
+
+### Run command is not supported for the time being
