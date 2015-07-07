@@ -32,7 +32,7 @@ function cordovaWrapper(commandArray, next) {
     browserify: false
   }
 
-  if (cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile') {
+  if (cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
 
     opts.platforms = commandArray.slice(1)
     var badPlatforms = _.difference(opts.platforms, known_platforms)
@@ -56,8 +56,6 @@ function cordovaWrapper(commandArray, next) {
     })
 
     cordova.raw[cmd].call(null, opts).done(next)
-  } else if (cmd == 'run') {
-    return callback('Run is not supported right now')
   } else if (cmd == 'serve') {
     var port = commandArray[1]
     cordova.raw.serve(port).done(next)
