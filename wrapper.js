@@ -20,6 +20,14 @@ function cordovaWrapper(commandArray, next) {
   var msg
   var known_platforms = Object.keys(cordova_lib.cordova_platforms)
 
+  /**
+   * Output the error in terminal/console
+   * @param dbg_msg
+   */
+  var callback = function (dbg_msg) {
+    console.log(dbg_msg);
+  }
+
   if (!cordova.hasOwnProperty(cmd)) {
     return callback('Cordova does not know ' + cmd)
   }
@@ -34,7 +42,19 @@ function cordovaWrapper(commandArray, next) {
 
   if (cmd == 'emulate' || cmd == 'build' || cmd == 'prepare' || cmd == 'compile' || cmd == 'run') {
 
-    opts.platforms = commandArray.slice(1)
+    // temporary storage of platforms
+    var platforms = commandArray.slice(1)
+
+    // distinguish platforms from arguments
+    // only boolean type of arguments (e.g. --release) allowed/working
+    for (var i = 0; i < platforms.length; i++) {
+      if (platforms[i].indexOf('--') === 0) { // is argument
+        opts.options.push(platforms[i])
+      } else { // is platform
+        opts.platforms.push(platforms[i])
+      }
+    }
+
     var badPlatforms = _.difference(opts.platforms, known_platforms)
     if (!_.isEmpty(badPlatforms)) {
       return callback('Unknown platforms: ' + badPlatforms.join(', '))
