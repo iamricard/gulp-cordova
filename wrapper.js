@@ -22,10 +22,10 @@ function cordovaWrapper(commandArray, next) {
 
   /**
    * Output the error in terminal/console
-   * @param dbg_msg
+   * @param dbgMsg
    */
-  var callback = function (dbg_msg) {
-    console.log(dbg_msg);
+  function callback (dbgMsg) {
+    console.log(dbgMsg);
   }
 
   if (!cordova.hasOwnProperty(cmd)) {
