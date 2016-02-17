@@ -5,7 +5,6 @@ var child = require('child_process')
 var gulp = require('gulp')
 var assert = require('assert')
 var fs = require('fs')
-var File = require('vinyl')
 var rm = require('rimraf')
 
 var cordova = require('../')
@@ -37,7 +36,7 @@ describe('gulp-cordova', function() {
   })
 
   after(function () {
-    child.exec('rm -rf ./test/test');
+    child.exec('rm -rf ./test/test')
   })
 
   it('should run the commands from the configuration file', function(done) {
@@ -57,11 +56,11 @@ describe('gulp-cordova', function() {
         'add',
         'browser'
       ],
-      [
-        'platform',
-        'rm',
-        'browser'
-      ]], { silent: true, cwd: __dirname + '/test' }))
+        [
+          'platform',
+          'rm',
+          'browser'
+        ]], { silent: true, cwd: __dirname + '/test' }))
       .on('close', function() {
         assert.equal(false, fs.existsSync(__dirname + '/test/platforms/browser'))
 
@@ -77,22 +76,22 @@ describe('gulp-cordova', function() {
 
         done()
       })
-  });
+  })
 
   it('should run multiple commands', function (done) {
     gulp.src('.')
       .pipe(cordova([[
-          "plugin",
-          "add",
-          "org.apache.cordova.device"
-        ],[
-          "platform",
-          "add",
-          "browser"
-        ]], { silent: true, cwd: __dirname + '/test' }))
+        'plugin',
+        'add',
+        'org.apache.cordova.device'
+      ],[
+        'platform',
+        'add',
+        'browser'
+      ]], { silent: true, cwd: __dirname + '/test' }))
       .on('close', function() {
         assert.equal(true, fs.existsSync(__dirname + '/test/platforms/browser'))
-        assert.equal(true, fs.existsSync(__dirname + '/test/plugins/org.apache.cordova.device'))
+        assert.equal(true, fs.existsSync(__dirname + '/test/plugins/cordova-plugin-device'))
 
         done()
       })
