@@ -8,11 +8,11 @@
  * Licensed under the MIT license.
  */
 
-const cordova_lib = require('cordova-lib'),
-      _ = require('lodash'),
-      cordova = cordova_lib.cordova,
-      events = cordova_lib.events,
-      fs = require('fs');
+const cordova_lib = require('cordova-lib')
+const _ = require('lodash')
+const cordova = cordova_lib.cordova
+const events = cordova_lib.events
+const fs = require('fs')
 
 function cordovaWrapper(commandArray, next) {
 
