@@ -11,7 +11,8 @@
 const cordova_lib = require('cordova-lib'),
       _ = require('lodash'),
       cordova = cordova_lib.cordova,
-      events = cordova_lib.events;
+      events = cordova_lib.events,
+      fs = require('fs');
 
 function cordovaWrapper(commandArray, next) {
 
