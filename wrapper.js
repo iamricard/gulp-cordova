@@ -8,10 +8,10 @@
  * Licensed under the MIT license.
  */
 
-var cordova_lib = require('cordova-lib')
-var _ = require('lodash')
-var cordova = cordova_lib.cordova
-var events = cordova_lib.events
+const cordova_lib = require('cordova-lib'),
+      _ = require('lodash'),
+      cordova = cordova_lib.cordova,
+      events = cordova_lib.events;
 
 function cordovaWrapper(commandArray, next) {
 
