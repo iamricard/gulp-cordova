@@ -1,6 +1,8 @@
 gulp-cordova
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rcsole/gulp-cordova.svg)](https://greenkeeper.io/)
+
 [![Dependency Status](https://david-dm.org/rcsole/gulp-cordova.svg)](https://david-dm.org/rcsole/gulp-cordova)
 [![Gittip](http://img.shields.io/gittip/rcsole.svg?style=flat)](https://www.gittip.com/rcsole/)
 [![CircleCI](https://circleci.com/gh/rcsole/gulp-cordova/tree/master.svg?style=svg)](https://circleci.com/gh/rcsole/gulp-cordova/tree/master)
