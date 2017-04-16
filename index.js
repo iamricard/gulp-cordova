@@ -14,12 +14,12 @@ var async = require('async')
 
 var GULP_CORDOVA = '[gulp-cordova]'
 
-module.exports = function(commands, opts,cordova_options) {
+module.exports = function(commands, opts,plugin_options) {
 
   var endStream = null
   opts = opts || {}
   opts.rootDir = process.cwd()
-  cordova_options=cordova_options||[]
+  plugin_options=plugin_options||[]
   function cordovaError(message) {
     return new gutil.PluginError({
       plugin: GULP_CORDOVA,
@@ -36,7 +36,7 @@ module.exports = function(commands, opts,cordova_options) {
 
     if (file.contents && !commands) {
       commands = JSON.parse(file.contents.toString()).cordova
-      cordova_options=JSON.parse(file.contents.toString()).cordova_options||[]
+      plugin_options=JSON.parse(file.contents.toString()).plugin_options||[]
     }
 
     if (!Array.isArray(commands)) {
@@ -74,8 +74,8 @@ module.exports = function(commands, opts,cordova_options) {
         'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')),
         'in', process.cwd())
     }
-    if(cordova_options[index]){
-      options=cordova_options[index];
+    if(plugin_options[index]){
+      options=plugin_options[index];
     }
 
     wrapper(command,options, next)
