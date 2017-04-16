@@ -52,7 +52,7 @@ gulp.task('cordova:init', function() {
 Notice I'm using `package.json` for demonstration purposes, but you may use any
 `JSON` file. Just make sure the file has a key `cordova` and that key contains
 an array with the command or an array of arrays for multiple commands.
-
+`plugin_options` is optional.Few plugins expect additional parameters while adding,in that case please make sure it is in synch with `cordova` array list.Please keep a empty {} object for commands like platform,plugins in plugin_options list.
 ```json
 file: config.json/package.json/xxx.json
 {
@@ -65,17 +65,32 @@ file: config.json/package.json/xxx.json
       "browser"
     ],
     [
-      "plugin",
+      "plugins",
       "add",
       "org.apache.cordova.device",
       "org.apache.cordova.geolocation",
       "org.apache.cordova.console"
+    ],
+    [
+      "plugin",
+      "add",
+      "cordova-plugin-googleplus"
     ]
+  ],
+  "plugin_options": [
+    {},
+    {},
+    {
+      "cli_variables":{
+        "REVERSED_CLIENT_ID":"com.googleusercontent.apps.uniqueId"
+      },
+      "save":true
+    }
   ]
 }
 ```
 
-### cordova(command, options)
+### cordova(command, options,plugin_options)
 
 #### command (optional)
 Type: `array`
@@ -94,6 +109,39 @@ Eg:
 Type: `boolean`
 
 Default: `false`
+#### plugin_options ( optional )
+Type: `array`
+
+Few plugins expect additional parameters while adding,in that case please make sure it is in synch with `cordova` array list.Please keep a empty {} object for commands like platform,plugins in plugin_options list.
+
+Eg:(side by side representation, wont work if copy and pasted).
+```
+"cordova": [                                plugin_options:[
+    [                                         {},
+      "platform",
+      "add",
+      "ios",
+      "android",
+      "browser"
+    ],
+
+    [                                         {},
+      "plugins",
+      "add",
+      "org.apache.cordova.device",
+      "org.apache.cordova.geolocation",
+      "org.apache.cordova.console"
+    ],
+
+    [                                         {
+      "plugin",                                 "cli_variables":{
+      "add",                                       "REVERSED_CLIENT_ID":"com.googleusercontent.apps.uniqueId"
+      "cordova-plugin-googleplus"               }
+    ]                                           "save":true
+                                              }
+
+];                                          ];
+```
 
 ##### cwd EXPERIMENTAL
 Type: `string`
