@@ -14,7 +14,7 @@ const cordova = cordova_lib.cordova
 const events = cordova_lib.events
 const fs = require('fs')
 
-function cordovaWrapper(commandArray, next) {
+function cordovaWrapper(commandArray,options, next) {
 
   var cmd = commandArray[0]
   var subcommand
@@ -96,8 +96,9 @@ function cordovaWrapper(commandArray, next) {
   } else {
     // platform/plugins add/rm [target(s)]
     subcommand = commandArray[1] // sub-command like "add", "ls", "rm" etc.
+    options=options||{}
     var targets = commandArray.slice(2) // array of targets, either platforms or plugins
-    cordova.raw[cmd](subcommand.toString(), targets).done(next)
+    cordova.raw[cmd](subcommand.toString(), targets,options).done(next)
   }
 
 }
