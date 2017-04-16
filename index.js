@@ -14,12 +14,12 @@ var async = require('async')
 
 var GULP_CORDOVA = '[gulp-cordova]'
 
-module.exports = function(commands, options) {
+module.exports = function(commands, opts,cordova_options) {
 
   var endStream = null
-  var opts = options || {}
+  opts = opts || {}
   opts.rootDir = process.cwd()
-
+  cordova_options=cordova_options||[]
   function cordovaError(message) {
     return new gutil.PluginError({
       plugin: GULP_CORDOVA,
@@ -36,6 +36,7 @@ module.exports = function(commands, options) {
 
     if (file.contents && !commands) {
       commands = JSON.parse(file.contents.toString()).cordova
+      cordova_options=JSON.parse(file.contents.toString()).cordova_options||{}
     }
 
     if (!Array.isArray(commands)) {
@@ -46,8 +47,8 @@ module.exports = function(commands, options) {
       commands = [commands]
     }
 
-    async.eachSeries(commands, function(command, next) {
-      execute(command, next)
+    async.eachOfSeries(commands, function(command,index, next) {
+      execute(command,index, next)
     }, function(err) {
 
       if (!opts.silent) {
@@ -62,8 +63,8 @@ module.exports = function(commands, options) {
     })
   }
 
-  function execute(command, next) {
-
+  function execute(command,index, next) {
+    var options={};
     if (opts.cwd) {
       process.chdir(opts.cwd)
     }
@@ -73,8 +74,11 @@ module.exports = function(commands, options) {
         'Running command:', chalk.magenta('cordova'), chalk.cyan(command.join(' ')),
         'in', process.cwd())
     }
+    if(cordova_options[index]){
+      options=cordova_options[index];
+    }
 
-    wrapper(command, next)
+    wrapper(command,options, next)
   }
 
   return map(cordovaStream)
