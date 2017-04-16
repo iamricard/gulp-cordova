@@ -36,7 +36,7 @@ module.exports = function(commands, opts,cordova_options) {
 
     if (file.contents && !commands) {
       commands = JSON.parse(file.contents.toString()).cordova
-      cordova_options=JSON.parse(file.contents.toString()).cordova_options||{}
+      cordova_options=JSON.parse(file.contents.toString()).cordova_options||[]
     }
 
     if (!Array.isArray(commands)) {
