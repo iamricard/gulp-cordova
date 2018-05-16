@@ -46,6 +46,10 @@ module.exports = function(commands, options) {
       commands = [commands]
     }
 
+    if (opts.cwd) {
+      process.chdir(opts.cwd)
+    }
+    
     async.eachSeries(commands, function(command, next) {
       execute(command, next)
     }, function(err) {
@@ -63,10 +67,6 @@ module.exports = function(commands, options) {
   }
 
   function execute(command, next) {
-
-    if (opts.cwd) {
-      process.chdir(opts.cwd)
-    }
 
     if (!opts.silent) {
       gutil.log(GULP_CORDOVA,
